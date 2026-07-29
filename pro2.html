@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Projects | Utibe Udom</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+--white:#ffffff;
+--bg:#f0f2f5;
+--border:#e2e6ea;
+--text:#0d0f14;
+--muted:#6b7280;
+--accent:#1a1a2e;
+--accent2:#16213e;
+}
+html{scroll-behavior:smooth;}
+body{
+font-family:'Raleway',sans-serif;
+color:var(--text);
+overflow-x:hidden;
+background:#ffffff;
+}
+
+/* NAVBAR */
+nav{
+position:fixed;top:0;left:0;right:0;
+z-index:1000;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+border-bottom:1px solid var(--border);
+padding:0 5%;
+display:flex;align-items:center;
+justify-content:space-between;
+height:64px;
+}
+.nav-logo{
+font-size:1.1rem;font-weight:900;
+color:var(--text);text-decoration:none;
+}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+text-decoration:none;color:var(--muted);
+font-size:0.88rem;font-weight:600;
+}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{
+background:var(--accent);color:#fff;
+padding:0.5rem 1.3rem;border-radius:7px;
+text-decoration:none;font-size:0.85rem;
+font-weight:700;
+}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;display:block;}
+.mobile-menu{
+display:none;position:fixed;top:64px;left:0;right:0;
+background:#fff;z-index:999;padding:1.2rem 5%;
+flex-direction:column;gap:1rem;
+border-bottom:1px solid var(--border);
+box-shadow:0 8px 24px rgba(0,0,0,0.08);
+}
+.mobile-menu a{
+text-decoration:none;color:var(--text);
+font-size:0.95rem;font-weight:600;padding:0.4rem 0;
+border-bottom:1px solid var(--border);
+}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu.open{display:flex;}
+
+/* PAGE HEADER */
+.page-header{
+padding:100px 5% 40px;
+background:linear-gradient(160deg,#0f2436 0%,#16344d 10%,#1f4863 20%,#2e6280 32%,#4a8099 44%,#7aa6b8 56%,#aecbd6 67%,#d3e3e9 78%,#eef4f6 88%,#ffffff 100%);
+}
+.page-eyebrow{
+font-size:0.68rem;font-weight:800;letter-spacing:0.14em;
+text-transform:uppercase;color:rgba(255,255,255,0.7);
+margin-bottom:0.4rem;display:block;
+}
+.page-title{font-size:2rem;font-weight:900;color:var(--text);margin-bottom:0.6rem;}
+.page-sub{color:rgba(255,255,255,0.85);font-size:0.88rem;font-weight:500;max-width:460px;}
+
+/* PROJECT BLOCK */
+.projects-wrap{padding:50px 5% 70px;background:#f8f9fb;}
+.proj-block{
+background:#fff;border:1.5px solid var(--border);
+border-radius:16px;overflow:hidden;
+margin-bottom:2.5rem;
+}
+.proj-head{padding:1.5rem 1.5rem 0;}
+.proj-name{font-size:1.3rem;font-weight:900;margin-bottom:0.3rem;}
+.proj-tagline{color:var(--muted);font-size:0.82rem;font-weight:500;margin-bottom:1rem;}
+
+.slider{position:relative;width:100%;aspect-ratio:4/3;background:#cdd8e2;overflow:hidden;}
+.slider-track{display:flex;width:100%;height:100%;transition:transform 0.35s ease;}
+.slide{min-width:100%;height:100%;flex-shrink:0;}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.slider-arrow{
+position:absolute;top:50%;transform:translateY(-50%);
+width:38px;height:38px;border-radius:50%;
+background:rgba(13,15,20,0.55);color:#fff;
+border:none;display:flex;align-items:center;justify-content:center;
+font-size:1rem;cursor:pointer;z-index:2;
+}
+.slider-arrow.prev{left:0.7rem;}
+.slider-arrow.next{right:0.7rem;}
+.slider-dots{
+position:absolute;bottom:0.8rem;left:0;right:0;
+display:flex;justify-content:center;gap:0.4rem;z-index:2;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;}
+.dot.active{background:#fff;width:18px;border-radius:4px;}
+
+.slide-caption{padding:1.2rem 1.5rem 0.4rem;}
+.caption-label{
+font-size:0.65rem;font-weight:800;letter-spacing:0.1em;
+text-transform:uppercase;color:var(--accent);margin-bottom:0.3rem;
+}
+.caption-text{font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:500;min-height:3.4rem;}
+
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.8rem 1.5rem 0;}
+.tag{
+font-size:0.63rem;font-weight:700;background:var(--bg);
+border:1px solid var(--border);border-radius:4px;
+padding:0.2rem 0.5rem;color:var(--muted);
+display:inline-flex;align-items:center;gap:0.3rem;
+}
+.proj-links{display:flex;gap:0.6rem;padding:1.2rem 1.5rem 1.5rem;}
+.pl-btn{
+flex:1;padding:0.65rem;border-radius:8px;
+font-size:0.8rem;font-weight:700;text-align:center;
+text-decoration:none;display:inline-flex;align-items:center;
+justify-content:center;gap:0.4rem;
+}
+.pl-btn.live{background:var(--accent);color:#fff;}
+.pl-btn.gh{background:var(--bg);color:var(--text);border:1.5px solid var(--border);}
+
+@media(max-width:768px){
+.nav-links{display:none!important;}
+.hamburger{display:flex!important;}
+.page-title{font-size:1.6rem!important;}
+}
+.slide img{cursor:zoom-in;}
+.lightbox{
+display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+background:rgba(0,0,0,0.92);z-index:2000;
+align-items:center;justify-content:center;
+padding:2rem 1rem;
+}
+.lightbox.open{display:flex;}
+.lightbox img{
+max-width:100%;max-height:90vh;
+border-radius:8px;object-fit:contain;
+}
+.lightbox-close{
+position:absolute;top:1.2rem;right:1.2rem;
+width:42px;height:42px;border-radius:50%;
+background:rgba(255,255,255,0.15);color:#fff;
+border:none;font-size:1.3rem;cursor:pointer;
+display:flex;align-items:center;justify-content:center;
+}
+</style>
+</head>
+<body>
+  <!-- NAVBAR -->
+<nav>
+<a href="portfolio2.html" class="nav-logo">Utibe Udom</a>
+<ul class="nav-links">
+<li><a href="portfolio2.html#home">Home</a></li>
+<li><a href="portfolio2.html#about">About</a></li>
+<li><a href="portfolio2.html#skills">Skills</a></li>
+<li><a href="portfolio2.html#contact">Contact</a></li>
+</ul>
+<a href="https://wa.me/2347075256299?text=Hi%20Utibe%2C%20I'd%20like%20to%20hire%20you" target="_blank" class="nav-cta">Let's Talk</a>
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<a href="portfolio2.html#home" onclick="toggleMenu()">Home</a>
+<a href="portfolio2.html#about" onclick="toggleMenu()">About</a>
+<a href="portfolio2.html#skills" onclick="toggleMenu()">Skills</a>
+<a href="portfolio2.html#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+<span class="page-eyebrow">My Work</span>
+<h1 class="page-title">All Projects</h1>
+<p class="page-sub">A closer look at every project — what it does, how it works, and how to try it live.</p>
+</section>
+
+<!-- PROJECTS -->
+<div class="projects-wrap">
+
+<!-- PROJECT 1: EMBER & SPICE -->
+<div class="proj-block">
+<div class="proj-head">
+<div class="proj-name">Ember & Spice Restaurant</div>
+<div class="proj-tagline">Full restaurant ordering site for a Nigerian kitchen brand</div>
+</div>
+<div class="slider" id="slider-ember">
+<div class="slider-track" id="track-ember">
+<img src="imgrest.jpg" onclick="openLightbox(this.src)" alt="Ember and Spice homepage">
+<div class="slide"><img src="ember-2.jpg"onclick="openLightbox(this.src) alt="Ember and Spice menu"/></div>
+<div class="slide"><img src="ember-3-1.jpg"onclick="openLightbox(this.src) alt="Ember and Spice cart"/></div>
+<div class="slide"><img src="ember-4.jpg"onclick="openLightbox(this.src) alt="Ember and Spice contact"/></div>
+</div>
+<button class="slider-arrow prev" onclick="moveSlide('ember',-1)"><i class="fas fa-chevron-left"></i></button>
+<button class="slider-arrow next" onclick="moveSlide('ember',1)"><i class="fas fa-chevron-right"></i></button>
+<div class="slider-dots" id="dots-ember"></div>
+</div>
+<div class="slide-caption">
+<div class="caption-label" id="label-ember">Homepage</div>
+<div class="caption-text" id="caption-ember">A warm, food-forward landing page introducing the brand — built to convert first-time visitors into orders within seconds of arriving.</div>
+</div>
+<div class="proj-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+<span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+<span class="tag"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+</div>
+<div class="proj-links">
+<a href="https://utibeudom79-ui.github.io/Newrestaurant/" target="_blank" class="pl-btn live"><i class="fas fa-arrow-up-right-from-square"></i> View Live</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="pl-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+
+<!-- PROJECT 2: FOODIEADMIN -->
+<div class="proj-block">
+<div class="proj-head">
+<div class="proj-name">FoodieAdmin Dashboard</div>
+<div class="proj-tagline">Restaurant admin panel with live orders, menu and analytics</div>
+</div>
+<div class="slider" id="slider-foodie">
+<div class="slider-track" id="track-foodie">
+<div class="slide"><img src="imgboard.jpg"onclick="openLightbox(this.src) alt="FoodieAdmin orders view"/></div>
+<div class="slide"><img src="foodie-2.jpg"onclick="openLightbox(this.src) alt="FoodieAdmin menu view"/></div>
+<div class="slide"><img src="foodie-3.jpg"onclick="openLightbox(this.src) alt="FoodieAdmin analytics view"/></div>
+</div>
+<button class="slider-arrow prev" onclick="moveSlide('foodie',-1)"><i class="fas fa-chevron-left"></i></button>
+<button class="slider-arrow next" onclick="moveSlide('foodie',1)"><i class="fas fa-chevron-right"></i></button>
+<div class="slider-dots" id="dots-foodie"></div>
+</div>
+<div class="slide-caption">
+<div class="caption-label" id="label-foodie">Orders</div>
+<div class="caption-text" id="caption-foodie">Real-time order tracking with status breakdowns — pending, preparing, delivered and cancelled — so staff always know what's happening at a glance.</div>
+</div>
+<div class="proj-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+<span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+<span class="tag"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+</div>
+<div class="proj-links">
+<a href="https://utibeudom79-ui.github.io/Dashboard/log.html" target="_blank" class="pl-btn live"><i class="fas fa-arrow-up-right-from-square"></i> View Live</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="pl-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+<!-- PROJECT 3: STYLEHUB -->
+<div class="proj-block">
+<div class="proj-head">
+<div class="proj-name">StyleHub E-Commerce</div>
+<div class="proj-tagline">Jumia-style online store with flash sales and Paystack checkout</div>
+</div>
+<div class="slider" id="slider-stylehub">
+<div class="slider-track" id="track-stylehub">
+<div class="slide"><img src="stylehub-1.jpg"onclick="openLightbox(this.src) alt="StyleHub product page"/></div>
+</div>
+<button class="slider-arrow prev" onclick="moveSlide('stylehub',-1)"><i class="fas fa-chevron-left"></i></button>
+<button class="slider-arrow next" onclick="moveSlide('stylehub',1)"><i class="fas fa-chevron-right"></i></button>
+<div class="slider-dots" id="dots-stylehub"></div>
+</div>
+<div class="slide-caption">
+<div class="caption-label" id="label-stylehub">Product Page</div>
+<div class="caption-text" id="caption-stylehub">Full product detail view with pricing, discounts, reviews and an Add to Cart flow — styled after Nigeria's biggest e-commerce platforms.</div>
+</div>
+<div class="proj-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+<span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+<span class="tag"><i class="fas fa-credit-card" style="color:#011B33;"></i> Paystack</span>
+</div>
+<div class="proj-links">
+<a href="https://utibeudom79-ui.github.io/E-commerce-/" target="_blank" class="pl-btn live"><i class="fas fa-arrow-up-right-from-square"></i> View Live</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="pl-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+
+<!-- PROJECT 4: FALKON STUDIOS -->
+<div class="proj-block">
+<div class="proj-head">
+<div class="proj-name">Falkon Studios Portfolio</div>
+<div class="proj-tagline">Client portfolio site for a graphic designer's brand</div>
+</div>
+<div class="slider" id="slider-falkon">
+<div class="slider-track" id="track-falkon">
+<div class="slide"><img src="falkon-1.jpg" onclick="openLightbox(this.src) alt="Falkon about page"/></div>
+<div class="slide"><img src="falkon-2.jpg"onclick="openLightbox(this.src) alt="Falkon projects page"/></div>
+<div class="slide"><img src="falkon-3.jpg"onclick="openLightbox(this.src) alt="Falkon project modal"/></div>
+<div class="slide"><img src="falkon-4.jpg"onclick="openLightbox(this.src) alt="Falkon contact page"/></div>
+</div>
+<button class="slider-arrow prev" onclick="moveSlide('falkon',-1)"><i class="fas fa-chevron-left"></i></button>
+<button class="slider-arrow next" onclick="moveSlide('falkon',1)"><i class="fas fa-chevron-right"></i></button>
+<div class="slider-dots" id="dots-falkon"></div>
+</div>
+<div class="slide-caption">
+<div class="caption-label" id="label-falkon">About</div>
+<div class="caption-text" id="caption-falkon">An intro section introducing the designer and their experience, built with a bold red-on-black identity that matches the client's creative brand.</div>
+</div>
+<div class="proj-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+<span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+</div>
+<div class="proj-links">
+<a href="https://utibeudom79-ui.github.io/Yhuteepro/Index28.html" target="_blank" class="pl-btn live"><i class="fas fa-arrow-up-right-from-square"></i> View Live</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="pl-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+
+<!-- PROJECT 5: PRIMEVA SUITES -->
+<div class="proj-block">
+<div class="proj-head">
+<div class="proj-name">Primeva Suites Real Estate</div>
+<div class="proj-tagline">Luxury property listing site with agent contact and WhatsApp booking</div>
+</div>
+<div class="slider" id="slider-primeva">
+<div class="slider-track" id="track-primeva">
+<div class="slide"><img src="imgreal.jpg" onclick="openLightbox(this.src) alt="Primeva homepage"/></div>
+<div class="slide"><img src="primeva-2.jpg" onclick="openLightbox(this.src) alt="Primeva villa listings"/></div>
+<div class="slide"><img src="primeva-3.jpg" onclick="openLightbox(this.src) alt="Primeva property detail"/></div>
+</div>
+<button class="slider-arrow prev" onclick="moveSlide('primeva',-1)"><i class="fas fa-chevron-left"></i></button>
+<button class="slider-arrow next" onclick="moveSlide('primeva',1)"><i class="fas fa-chevron-right"></i></button>
+<div class="slider-dots" id="dots-primeva"></div>
+</div>
+<div class="slide-caption">
+<div class="caption-label" id="label-primeva">Homepage</div>
+<div class="caption-text" id="caption-primeva">Trust-building landing page with reviews, stats and blog content, designed to position the brand as a serious real estate authority across Nigeria.</div>
+</div>
+<div class="proj-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span>
+<span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+</div>
+<div class="proj-links">
+<a href="https://utibeudom79-ui.github.io/Real-Estate/" target="_blank" class="pl-btn live"><i class="fas fa-arrow-up-right-from-square"></i> View Live</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="pl-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+
+</div>
+<div class="lightbox" id="lightbox">
+<button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+<img id="lightbox-img" src="" alt=""/>
+</div>
+
+<script>
+function toggleMenu(){
+document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+const projects = {
+ember:{
+count:4,
+captions:[
+{label:"Homepage",text:"A warm, food-forward landing page introducing the brand — built to convert first-time visitors into orders within seconds of arriving."},
+{label:"Menu",text:"Full menu browsing by category — rice dishes, soups, proteins and more — each with prices and one-tap Add to Cart."},
+{label:"Cart & Checkout",text:"Customers review their order and submit details, then complete checkout instantly through WhatsApp — no payment gateway needed."},
+{label:"Contact",text:"Reservation and contact form for direct enquiries, plus quick table booking sent straight to WhatsApp."}
+]
+},
+foodie:{
+count:3,
+captions:[
+{label:"Orders",text:"Real-time order tracking with status breakdowns — pending, preparing, delivered and cancelled — so staff always know what's happening at a glance."},
+{label:"Menu / Foods",text:"Admin-side food management — add, edit or remove menu items and track availability across categories."},
+{label:"Analytics",text:"Revenue and order trends visualized over time, helping the business owner spot peak hours and top-performing dishes."}
+]
+},
+stylehub:{
+count:1,
+captions:[
+{label:"Product Page",text:"Full product detail view with pricing, discounts, reviews and an Add to Cart flow — styled after Nigeria's biggest e-commerce platforms."}
+]
+},
+falkon:{
+count:4,
+captions:[
+{label:"About",text:"An intro section introducing the designer and their experience, built with a bold red-on-black identity that matches the client's creative brand."},
+{label:"Projects",text:"A grid of design work spanning branding, social media kits and logo redesigns, each tagged by tool and category."},
+{label:"Project Detail",text:"Clicking a project opens a closer look at the actual deliverables, shown in a clean modal without leaving the page."},
+{label:"Contact",text:"Multiple direct contact channels — WhatsApp, phone and a message form — making it effortless for new clients to reach out."}
+]
+},
+primeva:{
+count:3,
+captions:[
+{label:"Homepage",text:"Trust-building landing page with reviews, stats and blog content, designed to position the brand as a serious real estate authority across Nigeria."},
+{label:"Villa Listings",text:"Browsable property grid with pricing, location and bed/bath details, letting buyers compare listings at a glance."},
+{label:"Property Detail",text:"In-depth view of a single property including features, an assigned agent, and a one-tap WhatsApp tour booking button."}
+]
+}
+};
+
+const state = {};
+Object.keys(projects).forEach(key=>{
+state[key]=0;
+const dotsEl=document.getElementById('dots-'+key);
+for(let i=0;i<projects[key].count;i++){
+const d=document.createElement('div');
+d.className='dot'+(i===0?' active':'');
+d.onclick=()=>goToSlide(key,i);
+dotsEl.appendChild(d);
+}
+});
+
+function updateSlide(key){
+const track=document.getElementById('track-'+key);
+const idx=state[key];
+track.style.transform=`translateX(-${idx*100}%)`;
+document.querySelectorAll('#dots-'+key+' .dot').forEach((d,i)=>{
+d.classList.toggle('active',i===idx);
+});
+const cap=projects[key].captions[idx];
+document.getElementById('label-'+key).textContent=cap.label;
+document.getElementById('caption-'+key).textContent=cap.text;
+}
+
+function moveSlide(key,dir){
+const count=projects[key].count;
+state[key]=(state[key]+dir+count)%count;
+updateSlide(key);
+}
+
+function goToSlide(key,idx){
+state[key]=idx;
+updateSlide(key);
+}
+function openLightbox(src){
+document.getElementById('lightbox-img').src = src;
+document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+}
+
+document.getElementById('lightbox')
+.addEventListener('click', function(e){
+    if(e.target === this) closeLightbox();
+});
+</script>
+</body>
+</html>

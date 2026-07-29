@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Utibe Udom | Frontend Developer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+--white:#ffffff;
+--bg:#f0f2f5;
+--border:#e2e6ea;
+--text:#0d0f14;
+--muted:#6b7280;
+--accent:#1a1a2e;
+--accent2:#16213e;
+}
+html{scroll-behavior:smooth;}
+body{
+font-family:'Raleway',sans-serif;
+color:var(--text);
+overflow-x:hidden;
+background:#ffffff;
+}
+
+/* NAVBAR */
+nav{
+position:fixed;top:0;left:0;right:0;
+z-index:1000;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+border-bottom:1px solid var(--border);
+padding:0 5%;
+display:flex;align-items:center;
+justify-content:space-between;
+height:64px;
+}
+.nav-logo{
+font-family:'Raleway',sans-serif;
+font-size:1.1rem;font-weight:900;
+color:var(--text);text-decoration:none;
+}
+.nav-links{
+display:flex;gap:2rem;list-style:none;
+}
+.nav-links a{
+text-decoration:none;color:var(--muted);
+font-size:0.88rem;font-weight:600;
+transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{
+background:var(--accent);color:#fff;
+padding:0.5rem 1.3rem;border-radius:7px;
+text-decoration:none;font-size:0.85rem;
+font-weight:700;transition:opacity 0.2s;
+}
+.nav-cta:hover{opacity:0.85;}
+.hamburger{
+display:none;flex-direction:column;
+gap:5px;cursor:pointer;
+background:none;border:none;padding:4px;
+}
+.hamburger span{
+width:22px;height:2px;
+background:var(--text);border-radius:2px;
+display:block;
+}
+.mobile-menu{
+display:none;
+position:fixed;top:64px;
+left:0;right:0;
+background:#fff;z-index:999;
+padding:1.2rem 5%;
+flex-direction:column;gap:1rem;
+border-bottom:1px solid var(--border);
+box-shadow:0 8px 24px rgba(0,0,0,0.08);
+}
+.mobile-menu a{
+text-decoration:none;color:var(--text);
+font-size:0.95rem;font-weight:600;
+padding:0.4rem 0;
+border-bottom:1px solid var(--border);
+}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu.open{display:flex;}
+
+/* HERO */
+.hero{
+width:100%;
+padding:80px 5% 60px;
+position:relative;
+overflow:hidden;
+background:linear-gradient(160deg,
+#0f2436 0%,
+#16344d 10%,
+#1f4863 20%,
+#2e6280 32%,
+#4a8099 44%,
+#7aa6b8 56%,
+#aecbd6 67%,
+#d3e3e9 78%,
+#eef4f6 88%,
+#ffffff 100%);
+}
+.hero-inner{
+display:flex;
+flex-direction:row;
+gap:2rem;
+align-items:flex-start;
+width:100%;
+max-width:1200px;
+margin:0 auto;
+position:relative;z-index:1;
+}
+.hero-left{flex:1;padding-top:0.5rem;}
+.hero-badge{
+display:inline-block;
+background:var(--accent);color:#fff;
+font-size:0.68rem;font-weight:800;
+letter-spacing:0.14em;
+text-transform:uppercase;
+padding:0.3rem 0.85rem;
+border-radius:4px;margin-bottom:1.1rem;
+}
+.hero-title{
+font-family:'Raleway',sans-serif;
+font-size:2rem;
+font-weight:900;line-height:1.15;
+color:var(--text);margin-bottom:0.9rem;
+}
+.hero-sub{
+color:white;font-size:0.88rem;
+line-height:1.8;
+margin-bottom:1.5rem;font-weight:500;
+}
+.hero-btns{
+display:flex;gap:0.8rem;
+flex-wrap:wrap;margin-bottom:1.5rem;
+}
+.btn-primary{
+background:var(--accent);color:#fff;
+padding:0.7rem 1.5rem;border-radius:7px;
+text-decoration:none;font-weight:700;
+font-size:0.88rem;transition:opacity 0.2s;
+display:inline-block;
+}
+.btn-primary:hover{opacity:0.85;}
+.btn-outline{
+background:rgba(255,255,255,0.5);
+color:var(--text);
+padding:0.7rem 1.5rem;border-radius:7px;
+text-decoration:none;font-weight:700;
+font-size:0.88rem;
+border:2px solid rgba(0,0,0,0.15);
+transition:all 0.2s;
+display:inline-block;
+}
+.btn-outline:hover{
+border-color:var(--accent);
+color:var(--accent);
+}
+.hero-socials{display:flex;gap:0.7rem;}
+.hero-socials a{
+width:40px;height:40px;border-radius:8px;
+background:rgba(255,255,255,0.7);
+border:1.5px solid rgba(255,255,255,0.9);
+display:flex;align-items:center;
+justify-content:center;
+font-size:1.05rem;color:var(--text);
+text-decoration:none;
+transition:transform 0.2s;
+box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+.hero-socials a:hover{transform:translateY(-2px);}
+
+/* HERO RIGHT CARD */
+.hero-right{
+width:310px;flex-shrink:0;
+background:rgba(255,255,255,0.8);
+border-radius:14px;
+border:1.5px solid rgba(255,255,255,0.95);
+padding:1.2rem;
+display:flex;flex-direction:column;gap:0.8rem;
+box-shadow:0 8px 32px rgba(0,0,0,0.1);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+}
+.hero-photo{
+width:100%;height:200px;
+border-radius:10px;overflow:hidden;
+background:#b8cdd8;
+}
+.hero-photo img{
+width:100%;height:100%;
+object-fit:cover;object-position:center;
+display:block;
+}
+.hc-card{
+display:flex;align-items:center;gap:0.7rem;
+background:rgba(240,242,245,0.9);
+border-radius:8px;padding:0.6rem 0.8rem;
+border:1px solid rgba(226,230,234,0.8);
+}
+.hc-icon{
+width:30px;height:30px;border-radius:6px;
+background:#fff;
+border:1px solid var(--border);
+display:flex;align-items:center;
+justify-content:center;
+font-size:0.8rem;flex-shrink:0;
+}
+.hc-label{
+font-size:0.62rem;color:var(--muted);
+font-weight:700;text-transform:uppercase;
+letter-spacing:0.06em;line-height:1;
+margin-bottom:0.15rem;
+}
+.hc-value{
+font-size:0.75rem;font-weight:700;
+color:var(--text);
+}
+.hire-btn{
+background:var(--accent);color:#fff;
+border:none;border-radius:8px;
+padding:0.72rem 1rem;
+font-size:0.88rem;font-weight:700;
+cursor:pointer;width:100%;
+display:flex;align-items:center;
+justify-content:space-between;
+text-decoration:none;
+transition:opacity 0.2s;
+font-family:'Raleway',sans-serif;
+}
+.hire-btn:hover{opacity:0.85;}
+
+/* TICKER */
+.ticker-wrap{
+background:#fff;
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+padding:1rem 0;
+overflow:hidden;
+width:100%;
+}
+.ticker-label{
+text-align:center;
+font-size:0.65rem;font-weight:800;
+letter-spacing:0.14em;
+text-transform:uppercase;
+color:var(--muted);
+margin-bottom:0.8rem;
+font-family:'Raleway',sans-serif;
+}
+.ticker-outer{
+width:100%;
+overflow:hidden;
+}
+.ticker-inner{
+display:flex;
+flex-direction:row;
+flex-wrap:nowrap;
+gap:2.5rem;
+width:max-content;
+animation:tickerAnim 20s linear infinite;
+}
+@keyframes tickerAnim{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+.ticker-inner:hover{animation-play-state:paused;}
+.ticker-item{
+display:inline-flex;
+flex-direction:row;
+align-items:center;
+gap:0.5rem;
+white-space:nowrap;
+font-size:0.85rem;
+font-weight:700;
+color:var(--text);
+font-family:'Raleway',sans-serif;
+}
+.ticker-icon{
+width:24px;height:24px;
+display:inline-flex;
+align-items:center;justify-content:center;
+font-size:1.2rem;
+flex-shrink:0;
+}
+
+/* CAROUSEL */
+.carousel-section{
+padding:60px 0 60px 5%;
+overflow:hidden;
+background:#f8f9fb;
+width:100%;
+}
+.carousel-header{
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+margin-bottom:2rem;
+padding-right:5%;
+flex-wrap:wrap;
+gap:1rem;
+}
+.section-eyebrow{
+display:block;
+font-size:0.68rem;font-weight:800;
+letter-spacing:0.14em;
+text-transform:uppercase;
+color:var(--muted);margin-bottom:0.4rem;
+font-family:'Raleway',sans-serif;
+}
+.section-title{
+font-family:'Raleway',sans-serif;
+font-size:1.8rem;
+font-weight:900;
+color:var(--text);
+line-height:1.1;
+}
+.view-all-btn{
+display:inline-flex;
+align-items:center;gap:0.5rem;
+background:var(--accent);color:#fff;
+padding:0.6rem 1.3rem;border-radius:7px;
+text-decoration:none;font-weight:800;
+font-size:0.85rem;
+transition:opacity 0.2s;
+white-space:nowrap;
+font-family:'Raleway',sans-serif;
+}
+.view-all-btn:hover{opacity:0.85;}
+.carousel-outer{
+width:100%;
+overflow:hidden;
+}
+.carousel-inner{
+display:flex;
+flex-direction:row;
+flex-wrap:nowrap;
+gap:1.2rem;
+width:max-content;
+animation:carouselAnim 25s linear infinite;
+}
+@keyframes carouselAnim{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+.carousel-inner:hover{animation-play-state:paused;}
+.project-card{
+width:290px;
+flex-shrink:0;
+background:#fff;
+border:1.5px solid var(--border);
+border-radius:14px;
+overflow:hidden;
+display:inline-block;
+transition:transform 0.25s,box-shadow 0.25s;
+}
+.project-card:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 28px rgba(26,26,46,0.1);
+}
+.project-img{
+width:100%;
+height:180px;
+overflow:hidden;
+position:relative;
+display:block;
+background:#cdd8e2;
+}
+.project-img img{
+width:100%;height:100%;
+object-fit:cover;
+object-position:top;
+display:block;
+transition:transform 0.4s;
+}
+.project-card:hover .project-img img{
+transform:scale(1.05);
+}
+.project-overlay{
+position:absolute;
+bottom:0;left:0;right:0;
+height:60%;
+background:linear-gradient(
+to top,
+rgba(13,15,20,0.5),
+transparent
+);
+}
+.project-body{
+padding:1rem;
+}
+.project-name{
+font-weight:800;
+font-size:0.92rem;
+margin-bottom:0.3rem;
+color:var(--text);
+font-family:'Raleway',sans-serif;
+}
+.project-desc{
+font-size:0.76rem;
+color:var(--muted);
+line-height:1.65;
+margin-bottom:0.8rem;
+font-weight:500;
+font-family:'Raleway',sans-serif;
+}
+.project-tags{
+display:flex;
+flex-wrap:wrap;
+gap:0.3rem;
+margin-bottom:0.8rem;
+}
+.tag{
+font-size:0.63rem;font-weight:700;
+background:var(--bg);
+border:1px solid var(--border);
+border-radius:4px;
+padding:0.15rem 0.45rem;
+color:var(--muted);
+font-family:'Raleway',sans-serif;
+}
+.project-links{
+display:flex;gap:0.5rem;
+}
+.proj-btn{
+flex:1;padding:0.48rem;
+border-radius:7px;
+font-size:0.76rem;font-weight:700;
+text-align:center;text-decoration:none;
+border:none;cursor:pointer;
+transition:opacity 0.2s;
+font-family:'Raleway',sans-serif;
+display:inline-block;
+}
+.proj-btn.live{
+background:var(--accent);color:#fff;
+}
+.proj-btn.gh{
+background:var(--bg);color:var(--text);
+border:1.5px solid var(--border);
+}
+.proj-btn:hover{opacity:0.8;}
+
+/* ABOUT */
+.about-section{
+padding:65px 5%;
+background:#fff;
+}
+.about-grid{
+display:grid;
+grid-template-columns:260px 1fr;
+gap:3rem;
+align-items:start;
+margin-top:2rem;
+}
+.about-photo-wrap{position:relative;}
+.about-photo{
+width:100%;
+aspect-ratio:4/5;
+border-radius:14px;
+border:1.5px solid var(--border);
+overflow:hidden;
+background:#d8e4ec;
+}
+.about-photo img{
+width:100%;height:100%;
+object-fit:cover;object-position:center;
+display:block;
+}
+.about-badge{
+position:absolute;
+bottom:0.8rem;left:0.8rem;right:0.8rem;
+background:var(--accent);color:#fff;
+border-radius:8px;
+padding:0.65rem 0.9rem;
+font-size:0.74rem;font-weight:700;
+font-family:'Raleway',sans-serif;
+display:flex;align-items:center;gap:0.5rem;
+}
+.traits-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:0.9rem;
+}
+.trait-card{
+background:var(--bg);
+border:1.5px solid var(--border);
+border-radius:11px;padding:1rem;
+transition:border-color 0.2s,transform 0.2s;
+}
+.trait-card:hover{
+border-color:var(--accent);
+transform:translateY(-2px);
+}
+.trait-icon{font-size:1.3rem;margin-bottom:0.4rem;color:var(--accent);}
+.trait-name{
+font-weight:800;font-size:0.86rem;
+margin-bottom:0.3rem;
+font-family:'Raleway',sans-serif;
+}
+.trait-desc{
+font-size:0.76rem;color:var(--muted);
+line-height:1.65;font-weight:500;
+font-family:'Raleway',sans-serif;
+}
+.skill-tag{display:inline-flex;align-items:center;gap:0.45rem;background:#fff;border:1.5px solid var(--border);border-radius:7px;padding:0.4rem 0.8rem;font-size:0.8rem;font-weight:700;transition:border-color 0.2s;cursor:default;font-family:'Raleway',sans-serif;}
+.skill-tag:hover{border-color:var(--accent);}
+.tool-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:0.9rem 0.6rem;text-align:center;transition:border-color 0.2s,transform 0.2s;}
+.tool-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+@media(max-width:768px){
+.hero-inner{flex-direction:column!important;}
+.hero-right{display:none!important;}
+.hero-title{font-size:1.65rem!important;}
+.about-grid{grid-template-columns:1fr!important;}
+.about-photo{aspect-ratio:1/1!important;}
+[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+[style*="grid-template-columns:1.4fr"]{grid-template-columns:1fr 1fr!important;}
+.nav-links{display:none!important;}
+.hamburger{display:flex!important;}
+.section-title{font-size:1.5rem!important;}
+.traits-grid{grid-template-columns:1fr 1fr!important;}
+}
+@media(max-width:480px){
+[style*="grid-template-columns:1.4fr"]{grid-template-columns:1fr!important;}
+[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+.traits-grid{grid-template-columns:1fr!important;}
+}
+
+</style>
+</head>
+<body>
+  <!-- NAVBAR -->
+<nav>
+<a href="#home" class="nav-logo">Utibe Udom</a>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<a href="https://wa.me/2347075256299?text=Hi%20Utibe%2C%20I'd%20like%20to%20hire%20you" target="_blank" class="nav-cta">Let's Talk</a>
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<a href="#home" onclick="toggleMenu()">Home</a>
+<a href="#about" onclick="toggleMenu()">About</a>
+<a href="#skills" onclick="toggleMenu()">Skills</a>
+<a href="#contact" onclick="toggleMenu()">Contact</a>
+<a href="https://wa.me/2347075256299?text=Hi%20Utibe%2C%20I'd%20like%20to%20hire%20you" target="_blank" onclick="toggleMenu()" style="color:var(--accent);font-weight:800;">Let's Talk →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<div class="hero-inner">
+<div class="hero-left">
+<span class="hero-badge">Frontend Developer</span>
+<h1 class="hero-title">I build fast, responsive and modern websites that help businesses grow.</h1>
+<p class="hero-sub">I'm Utibe Udom, a front end developer.I build high-performing websites that help businesses establish credibility, attract customers, and drive measurable growth. Every project is crafted with clean, maintainable code, responsive design, and a strong focus on performance, accessibility, and exceptional user experience—from landing pages to full business websites.</p>
+<div class="hero-btns">
+<a href="#projects" class="btn-primary">View My Work</a>
+<a href="https://wa.me/2347075256299?text=Hi%20Utibe%2C%20I'd%20like%20to%20hire%20you" target="_blank" class="btn-outline">Hire Me</a>
+</div>
+<div class="hero-socials">
+<a href="https://github.com/utibeudom79-ui" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+<a href="https://www.facebook.com/profile.php?id=61585281470027" target="_blank" title="Facebook"><i class="fab fa-facebook" style="color:#1877f2;"></i></a>
+<a href="mailto:utibeudom79@gmail.com" title="Email"><i class="fas fa-envelope" style="color:#ea4335;"></i></a>
+</div>
+</div>
+<div class="hero-right">
+<div class="hero-photo">
+<img src="imgnso.jpg" alt="Utibe Udom"/>
+</div>
+<div class="hc-card">
+<div class="hc-icon"><i class="fas fa-envelope" style="color:#ea4335;"></i></div>
+<div><div class="hc-label">Email</div><div class="hc-value">utibeudom79@gmail.com</div></div>
+</div>
+<div class="hc-card">
+<div class="hc-icon"><i class="fab fa-whatsapp" style="color:#25d366;"></i></div>
+<div><div class="hc-label">WhatsApp</div><div class="hc-value">+234 707 525 6299</div></div>
+</div>
+<div class="hc-card">
+<div class="hc-icon"><i class="fas fa-map-marker-alt" style="color:var(--accent);"></i></div>
+<div><div class="hc-label">Location</div><div class="hc-value">Uyo, Akwa Ibom, Nigeria</div></div>
+</div>
+<a href="https://wa.me/2347075256299?text=Hi%20Utibe%2C%20I'd%20like%20to%20hire%20you" target="_blank" class="hire-btn">
+Hire Me <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+<div class="ticker-label">Building with modern web technologies</div>
+<div class="ticker-outer">
+<div class="ticker-inner">
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-html5-plain colored"></i></span> HTML5</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-css3-plain colored"></i></span> CSS3</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-javascript-plain colored"></i></span> JavaScript</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-firebase-plain colored"></i></span> Firebase</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-git-plain colored"></i></span> Git</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-github-original"></i></span> GitHub</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-figma-plain colored"></i></span> Figma</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-vscode-plain colored"></i></span> VS Code</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-html5-plain colored"></i></span> HTML5</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-css3-plain colored"></i></span> CSS3</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-javascript-plain colored"></i></span> JavaScript</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-firebase-plain colored"></i></span> Firebase</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-git-plain colored"></i></span> Git</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-github-original"></i></span> GitHub</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-figma-plain colored"></i></span> Figma</div>
+<div class="ticker-item"><span class="ticker-icon"><i class="devicon-vscode-plain colored"></i></span> VS Code</div>
+</div>
+</div>
+</div>
+
+<!-- FEATURED PROJECTS -->
+<section class="carousel-section" id="projects">
+<div class="carousel-header">
+<div>
+<span class="section-eyebrow">My Work</span>
+<h2 class="section-title">Featured Projects</h2>
+<p style="color:var(--muted);font-size:0.82rem;font-weight:500;margin-top:0.3rem;font-family:'Raleway',sans-serif;">Real projects built from scratch. Each one tells a story.</p>
+</div>
+<a href="pro2.html" class="view-all-btn">View All Projects <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="carousel-outer">
+<div class="carousel-inner">
+
+<div class="project-card">
+<div class="project-img">
+<img src="imgrest.jpg" alt="Ember and Spice"/>
+<div class="project-overlay"></div>
+</div>
+<div class="project-body">
+<div class="project-name">Ember & Spice Restaurant</div>
+<div class="project-desc">Full restaurant website with 25 Nigerian dishes, WhatsApp cart checkout, image carousel, and pages for About, Services and Contact.</div>
+<div class="project-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span><span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span><span class="tag"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+</div>
+<div class="project-links">
+<a href="https://utibeudom79-ui.github.io/Newrestaurant/" target="_blank" class="proj-btn live">Live Demo</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="proj-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-img">
+<img src="imgboard.jpg" alt="FoodieAdmin"/>
+<div class="project-overlay"></div>
+</div>
+<div class="project-body">
+<div class="project-name">FoodieAdmin Dashboard</div>
+<div class="project-desc">Restaurant admin dashboard with Firebase auth, real-time revenue charts, order management, customer tracking and demo login.</div>
+<div class="project-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span><span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span><span class="tag"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+</div>
+<div class="project-links">
+<a href="https://utibeudom79-ui.github.io/Dashboard/log.html" target="_blank" class="proj-btn live">Live Demo</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="proj-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-img">
+<img src="imgcommerce~2.jpg" alt="StyleHub"/>
+<div class="project-overlay"></div>
+</div>
+<div class="project-body">
+<div class="project-name">StyleHub E-Commerce</div>
+<div class="project-desc">Landing page e-commerce store with live flash sale countdown timer, Jumia-style layout, localStorage cart and Paystack payment integration.</div>
+<div class="project-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span><span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span><span class="tag"><i class="fas fa-credit-card" style="color:#011B33;"></i> Paystack</span>
+</div>
+<div class="project-links">
+<a href="https://utibeudom79-ui.github.io/E-commerce-/" target="_blank" class="proj-btn live">Live Demo</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="proj-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+</div>
+
+<!-- DUPLICATES FOR LOOP -->
+<div class="project-card">
+<div class="project-img">
+<img src="imgrest.jpg" alt="Ember and Spice"/>
+<div class="project-overlay"></div>
+</div>
+<div class="project-body">
+<div class="project-name">Ember & Spice Restaurant</div>
+<div class="project-desc">Full restaurant website with 25 Nigerian dishes, WhatsApp cart checkout, image carousel, and pages for About, Services and Contact.</div>
+<div class="project-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span><span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span><span class="tag"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+</div>
+<div class="project-links">
+<a href="https://utibeudom79-ui.github.io/Newrestaurant/" target="_blank" class="proj-btn live">Live Demo</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="proj-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-img">
+<img src="imgboard.jpg" alt="FoodieAdmin"/>
+<div class="project-overlay"></div>
+</div>
+<div class="project-body">
+<div class="project-name">FoodieAdmin Dashboard</div>
+<div class="project-desc">Restaurant admin dashboard with Firebase auth, real-time revenue charts, order management, customer tracking and demo login.</div>
+<div class="project-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span><span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span><span class="tag"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+</div>
+<div class="project-links">
+<a href="https://utibeudom79-ui.github.io/Dashboard/log.html" target="_blank" class="proj-btn live">Live Demo</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="proj-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-img">
+<img src="imgcommerce~2.jpg" alt="StyleHub"/>
+<div class="project-overlay"></div>
+</div>
+<div class="project-body">
+<div class="project-name">StyleHub E-Commerce</div>
+<div class="project-desc">Landing page e-commerce store with live flash sale countdown timer, Jumia-style layout, localStorage cart and Paystack payment integration.</div>
+<div class="project-tags">
+<span class="tag"><i class="devicon-html5-plain colored"></i> HTML</span><span class="tag"><i class="devicon-css3-plain colored"></i> CSS</span>
+<span class="tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span><span class="tag"><i class="fas fa-credit-card" style="color:#011B33;"></i> Paystack</span>
+</div>
+<div class="project-links">
+<a href="https://utibeudom79-ui.github.io/E-commerce-/" target="_blank" class="proj-btn live">Live Demo</a>
+<a href="https://github.com/utibeudom79-ui" target="_blank" class="proj-btn gh"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+<span class="section-eyebrow">About Me</span>
+<h2 class="section-title">Who I Am</h2>
+<p style="color:var(--muted);font-size:0.9rem;line-height:1.8;max-width:520px;font-weight:500;margin-top:0.5rem;font-family:'Raleway',sans-serif;">I'm frontend developer with a strong foundation in building responsive, beautiful websites. I enjoy turning ideas into real-world projects and continuously growing.</p>
+<div class="about-grid">
+<div class="about-photo-wrap">
+<div class="about-photo">
+<img src="imgnso.jpg" alt="Utibe Udom"/>
+</div>
+<div class="about-badge"><i class="fas fa-map-marker-alt"></i> Uyo, Nigeria · Open to remote work</div>
+</div>
+<div class="traits-grid">
+<div class="trait-card">
+<div class="trait-icon"><i class="fas fa-code"></i></div>
+<div class="trait-name">Clean Code</div>
+<div class="trait-desc">I write simple, readable and well-structured code that is easy to maintain and scale.</div>
+</div>
+<div class="trait-card">
+<div class="trait-icon"><i class="fas fa-mobile-alt"></i></div>
+<div class="trait-name">Responsive</div>
+<div class="trait-desc">Every site I build looks great and works perfectly on all screen sizes and devices.</div>
+</div>
+<div class="trait-card">
+<div class="trait-icon"><i class="fas fa-bolt"></i></div>
+<div class="trait-name">Performance</div>
+<div class="trait-desc">I focus on speed, clean layouts and smooth experiences that keep users engaged.</div>
+</div>
+<div class="trait-card">
+<div class="trait-icon"><i class="fas fa-book-open"></i></div>
+<div class="trait-name">Continuous Learner</div>
+<div class="trait-desc">Always improving — exploring new tools, techniques and better ways to build.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SKILLS -->
+<section id="skills" style="padding:65px 5%;background:var(--bg);">
+<span class="section-eyebrow">My Skills</span>
+<h2 class="section-title">Skills & Technologies</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2rem;">
+<div>
+<p style="font-size:0.65rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;font-family:'Raleway',sans-serif;">Frontend</p>
+<div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;">
+<span class="skill-tag"><i class="devicon-html5-plain colored" style="font-size:1rem;"></i> HTML <span style="color:var(--muted);font-size:0.65rem;">(Advanced)</span></span>
+<span class="skill-tag"><i class="devicon-css3-plain colored" style="font-size:1rem;"></i> CSS <span style="color:var(--muted);font-size:0.65rem;">(Advanced)</span></span>
+<span class="skill-tag"><i class="devicon-javascript-plain colored" style="font-size:1rem;"></i> JavaScript <span style="color:var(--muted);font-size:0.65rem;">(Intermediate)</span></span>
+</div>
+<p style="font-size:0.65rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;font-family:'Raleway',sans-serif;">Other Skills</p>
+<div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;">
+<span class="skill-tag"><i class="fas fa-mobile-alt"></i> Responsive Design</span>
+<span class="skill-tag"><i class="devicon-firebase-plain colored" style="font-size:1rem;"></i> Firebase <span style="color:var(--muted);font-size:0.65rem;">(Basic)</span></span>
+<span class="skill-tag"><i class="fas fa-credit-card" style="color:#011B33;"></i> Paystack <span style="color:var(--muted);font-size:0.65rem;">(Basic)</span></span>
+</div>
+<p style="font-size:0.65rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;font-family:'Raleway',sans-serif;">Version Control & Deployment</p>
+<div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+<span class="skill-tag"><i class="devicon-git-plain colored" style="font-size:1rem;"></i> Git</span>
+<span class="skill-tag"><i class="devicon-github-original" style="font-size:1rem;"></i> GitHub</span>
+<span class="skill-tag"><i class="devicon-vercel-original" style="font-size:1rem;"></i> Vercel <span style="color:var(--muted);font-size:0.65rem;">(Basic)</span></span>
+</div>
+</div>
+<div>
+<p style="font-size:0.65rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;font-family:'Raleway',sans-serif;">Tools & Platforms</p>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;margin-bottom:1.2rem;">
+<div class="tool-card">
+<i class="devicon-vscode-plain colored" style="font-size:1.6rem;display:block;margin-bottom:0.4rem;"></i>
+<span style="font-size:0.7rem;font-weight:700;color:var(--muted);font-family:'Raleway',sans-serif;">VS Code</span>
+</div>
+<div class="tool-card">
+<i class="devicon-github-original" style="font-size:1.6rem;display:block;margin-bottom:0.4rem;"></i>
+<span style="font-size:0.7rem;font-weight:700;color:var(--muted);font-family:'Raleway',sans-serif;">GitHub</span>
+</div>
+<div class="tool-card">
+<i class="devicon-firebase-plain colored" style="font-size:1.6rem;display:block;margin-bottom:0.4rem;"></i>
+<span style="font-size:0.7rem;font-weight:700;color:var(--muted);font-family:'Raleway',sans-serif;">Firebase</span>
+</div>
+<div class="tool-card">
+<i class="devicon-figma-plain colored" style="font-size:1.6rem;display:block;margin-bottom:0.4rem;"></i>
+<span style="font-size:0.7rem;font-weight:700;color:var(--muted);font-family:'Raleway',sans-serif;">Figma</span>
+</div>
+</div>
+<div style="background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:1.2rem;display:flex;gap:0.9rem;align-items:flex-start;">
+<div style="font-size:1.6rem;flex-shrink:0;color:var(--accent);"><i class="fas fa-handshake"></i></div>
+<div>
+<div style="font-weight:800;font-size:0.88rem;margin-bottom:0.3rem;font-family:'Raleway',sans-serif;">Open to Collaboration</div>
+<div style="font-size:0.78rem;color:var(--muted);line-height:1.7;font-weight:500;font-family:'Raleway',sans-serif;">I'm a frontend developer. For projects needing backend integration — auth, databases or APIs — I collaborate with backend developers to deliver a complete working solution.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--accent);text-align:center;padding:65px 5%;position:relative;overflow:hidden;">
+<div style="position:absolute;top:-80px;right:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);pointer-events:none;"></div>
+<div style="font-size:2rem;margin-bottom:0.8rem;color:#fff;"><i class="fas fa-envelope-open-text"></i></div>
+<h2 style="font-family:'Raleway',sans-serif;font-size:1.9rem;font-weight:900;color:#fff;margin-bottom:0.8rem;">Let's Build Something Amazing Together</h2>
+<p style="color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.8;max-width:460px;margin:0 auto 1.8rem;font-weight:500;font-family:'Raleway',sans-serif;">Have a project in mind? I'm always open to new opportunities. Let's create something great.</p>
+<div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+<a href="#contact" style="background:#fff;color:var(--accent);padding:0.75rem 1.8rem;border-radius:7px;font-weight:800;font-size:0.9rem;text-decoration:none;font-family:'Raleway',sans-serif;display:inline-block;">Get In Touch</a>
+<a href="projects2.html" style="background:transparent;color:#fff;padding:0.75rem 1.8rem;border-radius:7px;font-weight:800;font-size:0.9rem;text-decoration:none;border:2px solid rgba(255,255,255,0.35);font-family:'Raleway',sans-serif;display:inline-block;">View My Work</a>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:65px 5%;background:#fff;">
+<span class="section-eyebrow">Contact</span>
+<h2 class="section-title">Get In Touch</h2>
+<p style="color:var(--muted);font-size:0.9rem;line-height:1.8;max-width:480px;font-weight:500;margin-top:0.5rem;margin-bottom:2.2rem;font-family:'Raleway',sans-serif;">Have a project or want to work together? Send me a message and I'll get back to you.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;">
+<div>
+<h3 style="font-family:'Raleway',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:0.8rem;">Let's talk about your project</h3>
+<p style="color:var(--muted);font-size:0.82rem;line-height:1.8;font-weight:500;margin-bottom:1.2rem;font-family:'Raleway',sans-serif;">Whether you need a business website, landing page or full e-commerce store — I'm here to help.</p>
+<div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.75rem;font-size:0.82rem;font-weight:600;font-family:'Raleway',sans-serif;"><i class="fas fa-envelope" style="color:#ea4335;width:16px;"></i> utibeudom79@gmail.com</div>
+<div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.75rem;font-size:0.82rem;font-weight:600;font-family:'Raleway',sans-serif;"><i class="fab fa-whatsapp" style="color:#25d366;width:16px;"></i> +234 707 525 6299</div>
+<div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.75rem;font-size:0.82rem;font-weight:600;font-family:'Raleway',sans-serif;"><i class="fas fa-map-marker-alt" style="color:var(--accent);width:16px;"></i> Uyo, Akwa Ibom, Nigeria</div>
+<div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.75rem;font-size:0.82rem;font-weight:600;font-family:'Raleway',sans-serif;"><i class="fab fa-tiktok" style="width:16px;"></i><a href="https://vm.tiktok.com/ZS96HHLLrFCx2-t7T8A/" target="_blank" style="color:inherit;text-decoration:none;">TikTok</a></div>
+<div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.75rem;font-size:0.82rem;font-weight:600;font-family:'Raleway',sans-serif;"><i class="fab fa-instagram" style="color:#e1306c;width:16px;"></i><a href="https://www.instagram.com/utibeudom79" target="_blank" style="color:inherit;text-decoration:none;">@utibeudom79</a></div>
+</div>
+<div style="background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:1.6rem;">
+<form action="https://formspree.io/f/xjgpnqkq" method="POST" onsubmit="handleSubmit(event)">
+<div style="margin-bottom:0.9rem;">
+<label style="display:block;font-size:0.76rem;font-weight:700;margin-bottom:0.35rem;font-family:'Raleway',sans-serif;">Your Name</label>
+<input type="text" name="name" placeholder="John Doe" required style="width:100%;padding:0.65rem 0.9rem;border:1.5px solid var(--border);border-radius:7px;font-size:0.85rem;font-family:'Raleway',sans-serif;background:#fff;color:var(--text);outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"/>
+</div>
+<div style="margin-bottom:0.9rem;">
+<label style="display:block;font-size:0.76rem;font-weight:700;margin-bottom:0.35rem;font-family:'Raleway',sans-serif;">Email Address</label>
+<input type="email" name="email" placeholder="john@example.com" required style="width:100%;padding:0.65rem 0.9rem;border:1.5px solid var(--border);border-radius:7px;font-size:0.85rem;font-family:'Raleway',sans-serif;background:#fff;color:var(--text);outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"/>
+</div>
+<div style="margin-bottom:0.9rem;">
+<label style="display:block;font-size:0.76rem;font-weight:700;margin-bottom:0.35rem;font-family:'Raleway',sans-serif;">Message</label>
+<textarea name="message" placeholder="Tell me about your project..." required style="width:100%;padding:0.65rem 0.9rem;border:1.5px solid var(--border);border-radius:7px;font-size:0.85rem;font-family:'Raleway',sans-serif;background:#fff;color:var(--text);outline:none;height:105px;resize:vertical;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+</div>
+<button type="submit" style="width:100%;padding:0.75rem;background:var(--accent);color:#fff;border:none;border-radius:7px;font-size:0.88rem;font-weight:800;cursor:pointer;font-family:'Raleway',sans-serif;">Send Message →</button>
+<div id="formMsg" style="text-align:center;font-size:0.8rem;margin-top:0.65rem;display:none;font-weight:600;font-family:'Raleway',sans-serif;"></div>
+</form>
+</div>
+</div>
+</section>
